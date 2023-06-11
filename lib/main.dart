@@ -38,8 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
     Quote(text: 'Coding like poetry should be short and concise.', author: 'Santosh Kalwar'),
     Quote(text: 'First, solve the problem. Then, write the code.', author: 'John Johnson'),
     Quote(text: 'Make it work, make it right, make it fast.', author: 'Kent Beck'),
-    Quote(text: 'Experience is the name everyone gives to their mistakes.', author: 'Oscar Wilde'),
   ];
+
+  void deleteQuote(Quote quote) {
+    setState(() {
+      quotes.remove(quote);
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -54,7 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: Column(
-        children: quotes.map((quote) => QuoteCard(quote: quote,)).toList(),
+        children: quotes.map((quote) => QuoteCard(
+          quote: quote,
+          onDelete: () => deleteQuote(quote),
+        )).toList(),
       ),
     );
   }

@@ -5,9 +5,11 @@ class QuoteCard extends StatelessWidget {
   const QuoteCard({
     super.key,
     required this.quote,
+    required this.onDelete,
   });
 
   final Quote quote;
+  final Function onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,14 @@ class QuoteCard extends StatelessWidget {
                 color: Colors.grey[800],
               ),
             ),
+            const SizedBox(height: 8.0,),
+            TextButton.icon(
+              onPressed: () {
+                onDelete();
+              },
+              label: const Text("Delete quote"),
+              icon: const Icon(Icons.delete),
+            )
           ],
         ),
       ),
